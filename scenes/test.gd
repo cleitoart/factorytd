@@ -39,6 +39,7 @@ func _ready() -> void:
 	# Configure placement highlight
 	placement_highlight.size = Vector2(CELL_WIDTH - 10, CELL_HEIGHT - 10)
 	placement_highlight.pivot_offset = placement_highlight.size / 2
+	placement_highlight.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	
 	# Wait for child nodes to be ready, then snap existing ones to grid
 	await get_tree().process_frame
@@ -113,10 +114,6 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 		var mouse_pos = get_local_mouse_position()
 		
-		# If mouse is clicking inside the UI area, let UI handle it instead
-		if mouse_pos.y < 120 and mouse_pos.x > 300 and mouse_pos.x < 1620:
-			return
-			
 		var col = round((mouse_pos.x - GRID_START_X) / CELL_WIDTH)
 		var row = round((mouse_pos.y - GRID_START_Y) / CELL_HEIGHT)
 		

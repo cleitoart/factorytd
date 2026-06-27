@@ -1,54 +1,29 @@
-[gd_scene load_steps=5 format=3 uid="uid://s61nb67kbeyn"]
+[gd_scene format=3 uid="uid://s61nb67kbeyn"]
 
-[ext_resource type="Script" path="res://scenes/test.gd" id="4_script"]
-[ext_resource type="PackedScene" uid="uid://bj4cy57hbtwqk" path="res://scenes/turret.tscn" id="1_errlg"]
 [ext_resource type="Texture2D" uid="uid://npd13j1vm3o" path="res://assets/sprites/ground.png" id="2_bl13t"]
-[ext_resource type="PackedScene" uid="uid://xgy88cc36yl4" path="res://scenes/generator.tscn" id="3_iyx0m"]
+[ext_resource type="Script" uid="uid://d2r0t1hwbwghv" path="res://scenes/test.gd" id="4_script"]
 
 [node name="Test" type="Node2D" unique_id=1670653855]
 script = ExtResource("4_script")
-
-[node name="Node2D" parent="." unique_id=1377211643 instance=ExtResource("1_errlg")]
-position = Vector2(474, 359)
-scale = Vector2(4, 4)
-
-[node name="Node2D2" parent="." unique_id=1372127094 instance=ExtResource("1_errlg")]
-position = Vector2(474, 524)
-scale = Vector2(4, 4)
-
-[node name="Node2D3" parent="." unique_id=1070008887 instance=ExtResource("1_errlg")]
-position = Vector2(474, 689)
-scale = Vector2(4, 4)
-
-[node name="Node2D4" parent="." unique_id=869166487 instance=ExtResource("1_errlg")]
-position = Vector2(474, 194)
-scale = Vector2(4, 4)
-
-[node name="Node2D5" parent="." unique_id=968951624 instance=ExtResource("1_errlg")]
-position = Vector2(474, 854)
-scale = Vector2(4, 4)
 
 [node name="Ground" type="Sprite2D" parent="." unique_id=351562828]
 position = Vector2(960, 540)
 scale = Vector2(0.6, 0.6)
 texture = ExtResource("2_bl13t")
 
-[node name="generator" parent="." unique_id=1183740603 instance=ExtResource("3_iyx0m")]
-position = Vector2(210, 210)
-scale = Vector2(4, 4)
-
-[node name="PlacementHighlight" type="ColorRect" parent="."]
+[node name="PlacementHighlight" type="ColorRect" parent="." unique_id=614772327]
 offset_right = 40.0
 offset_bottom = 40.0
+mouse_filter = 2
 color = Color(0.2, 1, 0.2, 0.45098)
 
-[node name="SpawnTimer" type="Timer" parent="."]
+[node name="SpawnTimer" type="Timer" parent="." unique_id=482216659]
 wait_time = 4.0
 autostart = true
 
-[node name="UI" type="CanvasLayer" parent="."]
+[node name="UI" type="CanvasLayer" parent="." unique_id=1874872891]
 
-[node name="Panel" type="PanelContainer" parent="UI"]
+[node name="Panel" type="PanelContainer" parent="UI" unique_id=1592306573]
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -58,51 +33,51 @@ offset_right = 600.0
 offset_bottom = 110.0
 grow_horizontal = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/Panel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Panel" unique_id=2026361810]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/Panel/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/Panel/VBoxContainer" unique_id=782458877]
 layout_mode = 2
 alignment = 1
 
-[node name="TurretBtn" type="Button" parent="UI/Panel/VBoxContainer/HBoxContainer"]
+[node name="TurretBtn" type="Button" parent="UI/Panel/VBoxContainer/HBoxContainer" unique_id=367228548]
 custom_minimum_size = Vector2(250, 45)
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "Turret (30W)"
 
-[node name="GeneratorBtn" type="Button" parent="UI/Panel/VBoxContainer/HBoxContainer"]
+[node name="GeneratorBtn" type="Button" parent="UI/Panel/VBoxContainer/HBoxContainer" unique_id=171311875]
 custom_minimum_size = Vector2(250, 45)
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "Generator (50W)"
 
-[node name="ShovelBtn" type="Button" parent="UI/Panel/VBoxContainer/HBoxContainer"]
+[node name="ShovelBtn" type="Button" parent="UI/Panel/VBoxContainer/HBoxContainer" unique_id=580074707]
 custom_minimum_size = Vector2(250, 45)
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "Remove (Shovel)"
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="UI/Panel/VBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="UI/Panel/VBoxContainer" unique_id=1474671172]
 layout_mode = 2
 alignment = 1
 
-[node name="EnergyLabel" type="Label" parent="UI/Panel/VBoxContainer/HBoxContainer2"]
+[node name="EnergyLabel" type="Label" parent="UI/Panel/VBoxContainer/HBoxContainer2" unique_id=52833143]
 layout_mode = 2
 theme_override_font_sizes/font_size = 18
 text = "⚡ Power Grid: 0W / 0W"
 horizontal_alignment = 1
 
-[node name="VSeparator" type="VSeparator" parent="UI/Panel/VBoxContainer/HBoxContainer2"]
+[node name="VSeparator" type="VSeparator" parent="UI/Panel/VBoxContainer/HBoxContainer2" unique_id=172259209]
 layout_mode = 2
 
-[node name="LivesLabel" type="Label" parent="UI/Panel/VBoxContainer/HBoxContainer2"]
+[node name="LivesLabel" type="Label" parent="UI/Panel/VBoxContainer/HBoxContainer2" unique_id=357915005]
 layout_mode = 2
 theme_override_font_sizes/font_size = 18
 text = "❤️ Lives: 5"
 horizontal_alignment = 1
 
-[node name="GameOverScreen" type="ColorRect" parent="UI"]
+[node name="GameOverScreen" type="ColorRect" parent="UI" unique_id=521167105]
 visible = false
 anchors_preset = 15
 anchor_right = 1.0
@@ -111,7 +86,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.121569, 0.0392157, 0.0392157, 0.862745)
 
-[node name="VBox" type="VBoxContainer" parent="UI/GameOverScreen"]
+[node name="VBox" type="VBoxContainer" parent="UI/GameOverScreen" unique_id=1690257564]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -126,20 +101,20 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="Label" type="Label" parent="UI/GameOverScreen/VBox"]
+[node name="Label" type="Label" parent="UI/GameOverScreen/VBox" unique_id=1617406976]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.901961, 0.0980392, 0.0980392, 1)
 theme_override_font_sizes/font_size = 64
 text = "GAME OVER"
 horizontal_alignment = 1
 
-[node name="Label2" type="Label" parent="UI/GameOverScreen/VBox"]
+[node name="Label2" type="Label" parent="UI/GameOverScreen/VBox" unique_id=610859488]
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "The zombies ate your turrets!"
 horizontal_alignment = 1
 
-[node name="RestartBtn" type="Button" parent="UI/GameOverScreen/VBox"]
+[node name="RestartBtn" type="Button" parent="UI/GameOverScreen/VBox" unique_id=1040004552]
 custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
