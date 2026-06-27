@@ -8,10 +8,11 @@ var row: int = -1
 var col: int = -1
 var shoot_cooldown: float = 1.5
 var cooldown_timer: float = 0.0
-
+var base_scale: Vector2 = Vector2(4, 4)
 var bullet_scene = preload("res://scenes/bullet.tscn")
 
 func _ready() -> void:
+	base_scale = scale
 	add_to_group("turrets")
 	add_to_group("buildings")
 	health = max_health
@@ -39,10 +40,9 @@ func shoot() -> void:
 		get_parent().add_child(bullet)
 		
 		# Shoot kickback animation effect
-		var original_scale = scale
 		var tween = create_tween()
-		tween.tween_property(self, "scale", original_scale * Vector2(0.85, 1.15), 0.07)
-		tween.tween_property(self, "scale", original_scale, 0.07)
+		tween.tween_property(self, "scale", base_scale * Vector2(0.85, 1.15), 0.07)
+		tween.tween_property(self, "scale", base_scale, 0.07)
 
 func set_active(value: bool) -> void:
 	is_active = value
