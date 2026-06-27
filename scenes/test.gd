@@ -141,10 +141,14 @@ func handle_grid_click(cell: Vector2i) -> void:
 			if selected_tool == ToolType.TURRET:
 				new_building = turret_scene.instantiate()
 				new_building.scale = Vector2(4, 4)
+				new_building.add_to_group("turrets")
+				new_building.add_to_group("buildings")
 				turrets_list.append(new_building)
 			elif selected_tool == ToolType.GENERATOR:
 				new_building = generator_scene.instantiate()
 				new_building.scale = Vector2(4, 4)
+				new_building.add_to_group("generators")
+				new_building.add_to_group("buildings")
 				
 			if new_building:
 				new_building.position = cell_pos
@@ -158,7 +162,7 @@ func handle_grid_click(cell: Vector2i) -> void:
 				var tween = create_tween()
 				tween.tween_property(new_building, "scale", Vector2(4, 4), 0.15).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 				
-				update_energy()
+				call_deferred("update_energy")
 
 func remove_building(building: Node2D) -> void:
 	var cell = Vector2i(building.col, building.row)
