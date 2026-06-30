@@ -19,7 +19,6 @@ color = Color(0.2, 1, 0.2, 0.45098)
 
 [node name="SpawnTimer" type="Timer" parent="." unique_id=482216659]
 wait_time = 4.0
-autostart = true
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=1874872891]
 

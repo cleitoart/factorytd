@@ -27,6 +27,9 @@ var sky_sun_cooldown: float = 7.5
 var sky_sun_timer: float = 4.0
 var sun_scene = preload("res://scenes/sun.tscn")
 
+@export var initial_spawn_delay: float = 20.0
+@export var spawn_interval: float = 4.0
+
 # UI references
 @onready var turret_btn = $UI/Panel/VBoxContainer/HBoxContainer/TurretBtn
 @onready var generator_btn = $UI/Panel/VBoxContainer/HBoxContainer/GeneratorBtn
@@ -48,6 +51,11 @@ func _ready() -> void:
 	# Wait for child nodes to be ready, then snap existing ones to grid
 	await get_tree().process_frame
 	setup_existing_buildings()
+	
+	# Configure spawn timer delay and start programmatically
+	$SpawnTimer.wait_time = initial_spawn_delay
+	$SpawnTimer.start()
+	
 	update_energy()
 	update_ui_buttons()
 
@@ -210,7 +218,7 @@ func remove_building(building: Node2D) -> void:
 	call_deferred("update_energy")
 
 func update_energy() -> void:
-	energy_label.text = "☀️ Sun: " + str(sun_balance)
+	energy_label.text = "Sun: " + str(sun_balance)
 	
 	# Gray out / modulate purchase buttons if player cannot afford them
 	if is_instance_valid(turret_btn):
@@ -295,10 +303,15 @@ func _on_spawn_timer_timeout() -> void:
 	var tween = create_tween()
 	tween.tween_property(enemy, "scale", Vector2(4, 4), 0.25).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 
+	# If we just completed the initial delay, change wait time to standard spawn interval
+	if $SpawnTimer.wait_time != spawn_interval:
+		$SpawnTimer.wait_time = spawn_interval
+		$SpawnTimer.start()
+
 # Damage Player / Lives System
 func damage_player(amount: int) -> void:
 	player_lives = max(0, player_lives - amount)
-	lives_label.text = "❤️ Lives: " + str(player_lives)
+	lives_label.text = "Lives: " + str(player_lives)
 	
 	# Camera shake or screen flash when hit
 	var screen_flash = ColorRect.new()

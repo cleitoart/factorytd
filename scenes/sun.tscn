@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://df4vnbm5q8w2x"]
+[gd_scene format=3 uid="uid://df4vnbm5q8w2x"]
 
 [ext_resource type="Script" path="res://scenes/sun.gd" id="1_script"]
 [ext_resource type="Texture2D" uid="uid://cjyyab1s35s8l" path="res://assets/sprites/Sun.png" id="2_texture"]
