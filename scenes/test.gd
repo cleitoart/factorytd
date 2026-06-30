@@ -8,6 +8,8 @@ const CELL_WIDTH: float = 132.0
 const CELL_HEIGHT: float = 165.0
 const GRID_START_X: float = 210.0
 const GRID_START_Y: float = 194.0
+const PEASHOOTER_Y_OFFSET: float = 20.0
+const SUNFLOWER_Y_OFFSET: float = -20.0
 
 # Preloads
 var turret_scene = preload("res://scenes/Peashooter.tscn")
@@ -56,10 +58,16 @@ func setup_existing_buildings() -> void:
 			
 			var cell = Vector2i(col, row)
 			if not grid.has(cell):
-				# Snap it to the center of the calculated cell
+				# Snap it to the center of the calculated cell with Y offset
+				var y_offset = 0.0
+				if child.is_in_group("peashooters"):
+					y_offset = PEASHOOTER_Y_OFFSET
+				elif child.is_in_group("sunflowers"):
+					y_offset = SUNFLOWER_Y_OFFSET
+					
 				child.position = Vector2(
 					GRID_START_X + col * CELL_WIDTH,
-					GRID_START_Y + row * CELL_HEIGHT
+					GRID_START_Y + row * CELL_HEIGHT + y_offset
 				)
 				child.row = row
 				child.col = col
@@ -138,14 +146,18 @@ func handle_grid_click(cell: Vector2i) -> void:
 			if selected_tool == ToolType.TURRET:
 				new_building = turret_scene.instantiate()
 				new_building.scale = Vector2(4, 4)
+				new_building.add_to_group("peashooters")
 				new_building.add_to_group("turrets")
 				new_building.add_to_group("buildings")
 				turrets_list.append(new_building)
+				cell_pos.y += PEASHOOTER_Y_OFFSET
 			elif selected_tool == ToolType.GENERATOR:
 				new_building = generator_scene.instantiate()
 				new_building.scale = Vector2(4, 4)
+				new_building.add_to_group("sunflowers")
 				new_building.add_to_group("generators")
 				new_building.add_to_group("buildings")
+				cell_pos.y += SUNFLOWER_Y_OFFSET
 				
 			if new_building:
 				new_building.position = cell_pos
