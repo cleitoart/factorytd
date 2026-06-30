@@ -4,10 +4,10 @@ var grid: Dictionary = {} # Maps Vector2i(col, row) -> Node2D (building)
 var turrets_list: Array = [] # List of turrets in placement order for energy priority
 
 # Grid settings (5 rows x 12 columns)
-const CELL_WIDTH: float = 132.0
-const CELL_HEIGHT: float = 165.0
-const GRID_START_X: float = 210.0
-const GRID_START_Y: float = 194.0
+const CELL_WIDTH: float = 136.8
+const CELL_HEIGHT: float = 168.0
+const GRID_START_X: float = 210.3
+const GRID_START_Y: float = 203.1
 const PEASHOOTER_Y_OFFSET: float = 20.0
 const SUNFLOWER_Y_OFFSET: float = -20.0
 
@@ -29,6 +29,12 @@ var sun_scene = preload("res://scenes/sun.tscn")
 
 @export var initial_spawn_delay: float = 20.0
 @export var spawn_interval: float = 4.0
+
+var current_wave: int = 1
+var enemies_spawned_in_current_wave: int = 0
+var enemies_to_spawn_this_wave: int = 1
+var is_wave_active: bool = true
+var wave_transition_label: Label = null
 
 # UI references
 @onready var turret_btn = $UI/Panel/VBoxContainer/HBoxContainer/TurretBtn
@@ -55,6 +61,9 @@ func _ready() -> void:
 	# Configure spawn timer delay and start programmatically
 	$SpawnTimer.wait_time = initial_spawn_delay
 	$SpawnTimer.start()
+	
+	# Show Wave 1 announcement
+	show_wave_announcement("Wave 1 incoming!")
 	
 	update_energy()
 	update_ui_buttons()
@@ -97,6 +106,69 @@ func _process(delta: float) -> void:
 		if sky_sun_timer <= 0:
 			spawn_sky_sun()
 			sky_sun_timer = randf_range(6.0, 9.5)
+			
+		# Check wave completion
+		if not is_wave_active:
+			var enemies = get_tree().get_nodes_in_group("enemies")
+			var active_enemies = 0
+			for e in enemies:
+				if is_instance_valid(e) and e.hp > 0:
+					active_enemies += 1
+			if active_enemies == 0:
+				is_wave_active = true
+				trigger_next_wave()
+
+func trigger_next_wave() -> void:
+	current_wave += 1
+	enemies_spawned_in_current_wave = 0
+	enemies_to_spawn_this_wave = current_wave * 2 - 1
+	
+	# Show transition banner
+	show_wave_announcement("Wave " + str(current_wave) + " incoming!")
+	
+	# Set timer for the next wave's first zombie: 10 seconds of preparation
+	$SpawnTimer.wait_time = 10.0
+	$SpawnTimer.start()
+
+func show_wave_announcement(msg: String) -> void:
+	if is_instance_valid(wave_transition_label):
+		var old_panel = wave_transition_label.get_parent()
+		if is_instance_valid(old_panel):
+			old_panel.queue_free()
+		
+	var label = Label.new()
+	label.text = msg
+	label.add_theme_font_size_override("font_size", 36)
+	label.add_theme_color_override("font_color", Color(1.0, 0.8, 0.2)) # Premium gold color
+	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	label.size = Vector2(800, 100)
+	label.position = Vector2(960 - 400, 300) # Centered horizontally
+	
+	# Add background panel behind the label
+	var panel = Panel.new()
+	panel.size = label.size
+	panel.position = label.position
+	panel.modulate.a = 0.8
+	
+	# Flat stylebox for panel
+	var style = StyleBoxFlat.new()
+	style.bg_color = Color(0.1, 0.1, 0.12, 0.7)
+	style.set_corner_radius_all(15)
+	panel.add_theme_stylebox_override("panel", style)
+	
+	add_child(panel)
+	panel.add_child(label) # Add label inside panel
+	
+	wave_transition_label = label # Keep reference
+	
+	# Animate pop in and fade out
+	panel.scale = Vector2(0.5, 0.5)
+	panel.pivot_offset = panel.size / 2
+	var tween = create_tween()
+	tween.tween_property(panel, "scale", Vector2.ONE, 0.35).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	tween.tween_property(panel, "modulate:a", 0.0, 1.0).set_delay(2.5)
+	tween.chain().tween_callback(panel.queue_free)
 
 func update_placement_preview() -> void:
 	if player_lives <= 0:
@@ -286,6 +358,10 @@ func _on_spawn_timer_timeout() -> void:
 	if player_lives <= 0:
 		return
 		
+	# Check wave limits
+	if enemies_spawned_in_current_wave >= enemies_to_spawn_this_wave:
+		return
+		
 	# Choose a random row from 0 to 4
 	var row = randi() % 5
 	var spawn_pos = Vector2(
@@ -303,10 +379,16 @@ func _on_spawn_timer_timeout() -> void:
 	var tween = create_tween()
 	tween.tween_property(enemy, "scale", Vector2(4, 4), 0.25).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 
-	# If we just completed the initial delay, change wait time to standard spawn interval
-	if $SpawnTimer.wait_time != spawn_interval:
-		$SpawnTimer.wait_time = spawn_interval
-		$SpawnTimer.start()
+	enemies_spawned_in_current_wave += 1
+
+	if enemies_spawned_in_current_wave >= enemies_to_spawn_this_wave:
+		$SpawnTimer.stop()
+		is_wave_active = false
+	else:
+		# If we just completed the initial delay, change wait time to standard spawn interval
+		if $SpawnTimer.wait_time != spawn_interval:
+			$SpawnTimer.wait_time = spawn_interval
+			$SpawnTimer.start()
 
 # Damage Player / Lives System
 func damage_player(amount: int) -> void:

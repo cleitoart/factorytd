@@ -34,7 +34,7 @@ func spawn_splash() -> void:
 	spark.modulate = Color(2.0, 2.0, 1.0) # Bright yellow-ish highlight
 	get_parent().add_child(spark)
 	
-	var tween = create_tween()
+	var tween = spark.create_tween()
 	tween.set_parallel(true)
 	tween.tween_property(spark, "scale", Vector2.ZERO, 0.1)
 	tween.tween_property(spark, "modulate", Color(1, 1, 1, 0), 0.1)
