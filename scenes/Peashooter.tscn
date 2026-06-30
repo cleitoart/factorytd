@@ -1,0 +1,150 @@
+[gd_scene load_steps=6 format=3 uid="uid://y0pnldrs4x2f"]
+
+[ext_resource type="Script" path="res://scenes/peashooter.gd" id="1_script"]
+
+[ext_resource type="Texture2D" uid="uid://3u67bypwwmr7" path="res://assets/sprites/peashooter_head.png" id="1_5xas3"]
+[ext_resource type="Texture2D" uid="uid://bd0e4m5l5cov6" path="res://assets/sprites/peashooter_leaf.png" id="2_qjpyf"]
+[ext_resource type="Texture2D" uid="uid://cai3s1mfoj1ae" path="res://assets/sprites/peashooter_trunk.png" id="3_qjpyf"]
+[ext_resource type="Texture2D" uid="uid://3k2r4trhdhkq" path="res://assets/sprites/peashooter_bottom_leafs.png" id="4_dl5oq"]
+
+[sub_resource type="Animation" id="Animation_8tuwf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Head:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(3, -13)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Head:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Head/Leaf:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.08282233]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Trunk:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_vq1ib"]
+resource_name = "idle"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Head:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.20000002, 0.4, 0.6),
+"transitions": PackedFloat32Array(0.50000006, 1, 0.50000006, 1),
+"update": 0,
+"values": [Vector2(3, -12.5), Vector2(4, -13), Vector2(5, -11.5), Vector2(4, -13)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Head:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.033333335, 0.23333333, 0.46666667, 0.6333334),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [-0.05235987755982989, 0.0, 0.05235987755982989, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Head/Leaf:rotation")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.033333335, 0.2, 0.36666667, 0.53333336, 0.6333333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [-0.13962634015954636, -0.13962634015954636, 0.20943951023931956, 0.20943951023931956, 0.3647738136668145]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Trunk:rotation")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(0.50000006, 1, 0.50000006, 1),
+"update": 0,
+"values": [-0.026179938779914945, 0.0, 0.03490658503988659, -0.026179938779914945]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_h2krh"]
+_data = {
+&"RESET": SubResource("Animation_8tuwf"),
+&"idle": SubResource("Animation_vq1ib")
+}
+
+[node name="Peashooter" type="Node2D" unique_id=197053273]
+script = ExtResource("1_script")
+
+[node name="Head" type="Sprite2D" parent="." unique_id=1937174151]
+z_index = 1
+texture_filter = 1
+position = Vector2(3, -13)
+texture = ExtResource("1_5xas3")
+
+[node name="Leaf" type="Sprite2D" parent="Head" unique_id=283897523]
+z_index = -1
+texture_filter = 1
+position = Vector2(-10, -5)
+rotation = 0.08282233
+texture = ExtResource("2_qjpyf")
+offset = Vector2(-2, 0)
+
+[node name="Trunk" type="Sprite2D" parent="." unique_id=1888768146]
+texture_filter = 1
+position = Vector2(-1, 6)
+texture = ExtResource("3_qjpyf")
+offset = Vector2(0, -6)
+
+[node name="Bottom_Leaves" type="Sprite2D" parent="." unique_id=2035231626]
+z_index = -1
+texture_filter = 1
+position = Vector2(0, 5)
+texture = ExtResource("4_dl5oq")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1985018043]
+libraries/ = SubResource("AnimationLibrary_h2krh")

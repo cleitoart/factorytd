@@ -6,15 +6,11 @@ var row: int = -1
 var col: int = -1
 
 func _ready() -> void:
-	add_to_group("generators")
+	add_to_group("sunflowers")
+	add_to_group("generators") # Kept for compatibility with test.gd
 	add_to_group("buildings")
 	health = max_health
 	$AnimationPlayer.play("idle")
-	# Register to the main game if it's already running
-	var main = get_tree().current_scene
-	if main and main.has_method("register_building"):
-		# We will register it when ready, but main might do it on ready as well.
-		pass
 
 func take_damage(amount: float) -> void:
 	health -= amount

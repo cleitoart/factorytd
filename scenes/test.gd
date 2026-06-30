@@ -10,8 +10,8 @@ const GRID_START_X: float = 210.0
 const GRID_START_Y: float = 194.0
 
 # Preloads
-var turret_scene = preload("res://scenes/turret.tscn")
-var generator_scene = preload("res://scenes/generator.tscn")
+var turret_scene = preload("res://scenes/Peashooter.tscn")
+var generator_scene = preload("res://scenes/sunflower.tscn")
 var enemy_scene = preload("res://scenes/enemy.tscn")
 
 # Game state

@@ -1,0 +1,509 @@
+[gd_scene load_steps=6 format=3 uid="uid://bc05ot7fkjcmr"]
+
+[ext_resource type="Script" path="res://scenes/sunflower.gd" id="1_script"]
+
+[ext_resource type="Texture2D" uid="uid://deqw1d6x2sd8a" path="res://assets/sprites/sunflower_head.png" id="1_ofkug"]
+[ext_resource type="Texture2D" uid="uid://bvxgc4abo3lwk" path="res://assets/sprites/sunflower_petal.png" id="2_8whej"]
+[ext_resource type="Texture2D" uid="uid://c0gsnkbxyx37h" path="res://assets/sprites/sunflower_bottom_leaves.png" id="3_qrkhh"]
+[ext_resource type="Texture2D" uid="uid://dvlcrkjojidws" path="res://assets/sprites/sunflower_trunk.png" id="4_kn0uu"]
+
+[sub_resource type="Animation" id="Animation_ugp2e"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Head:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Head:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Head/Petal:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-0.12391838]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Head/Petal6:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.22514747]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Head/Petal7:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.92327917]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Head/Petal8:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.1554079]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Head/Petal9:rotation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.9687314]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Head/Petal2:rotation")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-0.4537856]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Head/Petal3:rotation")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-0.7853982]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Head/Petal4:rotation")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-1.6877334]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Head/Petal5:rotation")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-2.0943952]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Head/Petal10:rotation")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-2.841396]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("Head/Petal11:rotation")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-3.0752702]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("Head/Petal12:rotation")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [2.5097835]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("Trunk:rotation")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_bb4av"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Head:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.5, 0.7),
+"transitions": PackedFloat32Array(-2, -0.5, -2, -0.5),
+"update": 0,
+"values": [Vector2(-1, 0), Vector2(0, 0), Vector2(1, 0), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Head:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.5, 0.7),
+"transitions": PackedFloat32Array(-2, -0.5, -2, -0.5),
+"update": 0,
+"values": [-0.08726646259971647, 0.0, 0.08726646259971647, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Head/Petal:rotation")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.033333335, 0.73333335),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-0.12217304763960307, 0.19198621771937624]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Head/Petal6:rotation")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.03333336, 0.73333335),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.22689280275926285, 0.5410520681182421]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Head/Petal7:rotation")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.033333335, 0.73333335),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.92327917, 1.2374384396639793]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Head/Petal8:rotation")
+tracks/5/interp = 2
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.033333335, 0.73333335),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.1554079, 1.4695672301792253]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Head/Petal9:rotation")
+tracks/6/interp = 2
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.033333335, 0.73333335),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.9687314, 2.282890661608583]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Head/Petal2:rotation")
+tracks/7/interp = 2
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0.033333335, 0.73333335),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-0.4537856, -0.13962634015954636]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Head/Petal3:rotation")
+tracks/8/interp = 2
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0.033333335, 0.73333335),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-0.7853982, -0.47123889803846897]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Head/Petal4:rotation")
+tracks/9/interp = 2
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0.033333335, 0.73333335),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-1.6877334, -1.3735741213195372]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Head/Petal5:rotation")
+tracks/10/interp = 2
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0.033333335, 0.73333335),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-2.0943952, -1.7802358370342162]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Head/Petal10:rotation")
+tracks/11/interp = 2
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0.033333335, 0.73333335),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-2.841396, -2.5272367568877896]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("Head/Petal11:rotation")
+tracks/12/interp = 2
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0.033333335, 0.73333335),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-3.0752702, -2.761110876655029]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("Head/Petal12:rotation")
+tracks/13/interp = 2
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0.033333335, 0.73333335),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [2.5097835, 2.8239427297268245]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("Trunk:rotation")
+tracks/14/interp = 2
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.5, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [-0.05235987755982989, 0.0, 0.05235987755982989, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_85yun"]
+_data = {
+&"RESET": SubResource("Animation_ugp2e"),
+&"idle": SubResource("Animation_bb4av")
+}
+
+[node name="Sunflower" type="Node2D" unique_id=835844448]
+script = ExtResource("1_script")
+
+[node name="Head" type="Sprite2D" parent="." unique_id=1314240234]
+z_index = 1
+texture_filter = 1
+texture = ExtResource("1_ofkug")
+
+[node name="Petal" type="Sprite2D" parent="Head" unique_id=1716691095]
+z_index = -1
+texture_filter = 1
+position = Vector2(-1.0000001, -7)
+rotation = -0.12391838
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("2_8whej")
+offset = Vector2(1, -2)
+
+[node name="Petal6" type="Sprite2D" parent="Head" unique_id=1623200582]
+z_index = -1
+texture_filter = 1
+position = Vector2(4, -5)
+rotation = 0.22514747
+texture = ExtResource("2_8whej")
+offset = Vector2(0, -3)
+
+[node name="Petal7" type="Sprite2D" parent="Head" unique_id=1494200862]
+z_index = -1
+texture_filter = 1
+position = Vector2(6, -4)
+rotation = 0.92327917
+texture = ExtResource("2_8whej")
+offset = Vector2(0, -3)
+
+[node name="Petal8" type="Sprite2D" parent="Head" unique_id=567270160]
+z_index = -1
+texture_filter = 1
+position = Vector2(8, 4.0978183e-08)
+rotation = 1.1554079
+texture = ExtResource("2_8whej")
+offset = Vector2(0, -3)
+
+[node name="Petal9" type="Sprite2D" parent="Head" unique_id=2109540000]
+z_index = -1
+texture_filter = 1
+position = Vector2(7, 2)
+rotation = 1.9687314
+texture = ExtResource("2_8whej")
+offset = Vector2(0, -3)
+
+[node name="Petal2" type="Sprite2D" parent="Head" unique_id=1056566674]
+z_index = -1
+texture_filter = 1
+position = Vector2(-4, -5)
+rotation = -0.4537856
+texture = ExtResource("2_8whej")
+offset = Vector2(0, -3)
+
+[node name="Petal3" type="Sprite2D" parent="Head" unique_id=1477077862]
+z_index = -1
+texture_filter = 1
+position = Vector2(-7, -2)
+rotation = -0.7853982
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("2_8whej")
+offset = Vector2(0, -3)
+
+[node name="Petal4" type="Sprite2D" parent="Head" unique_id=1229240880]
+z_index = -1
+texture_filter = 1
+position = Vector2(-8, 4.0978183e-08)
+rotation = -1.6877334
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("2_8whej")
+offset = Vector2(0, -3)
+
+[node name="Petal5" type="Sprite2D" parent="Head" unique_id=273049693]
+z_index = -1
+texture_filter = 1
+position = Vector2(-6, 3)
+rotation = -2.0943952
+texture = ExtResource("2_8whej")
+offset = Vector2(0, -3)
+
+[node name="Petal10" type="Sprite2D" parent="Head" unique_id=1575254278]
+z_index = -1
+texture_filter = 1
+position = Vector2(-4, 4)
+rotation = -2.841396
+texture = ExtResource("2_8whej")
+offset = Vector2(0, -3)
+flip_h = true
+flip_v = true
+
+[node name="Petal11" type="Sprite2D" parent="Head" unique_id=409869489]
+z_index = -1
+texture_filter = 1
+position = Vector2(-7.8231096e-08, 5)
+rotation = -3.0752702
+texture = ExtResource("2_8whej")
+offset = Vector2(-1, -3)
+flip_v = true
+
+[node name="Petal12" type="Sprite2D" parent="Head" unique_id=1625694586]
+z_index = -1
+texture_filter = 1
+position = Vector2(3, 4)
+rotation = 2.5097835
+texture = ExtResource("2_8whej")
+offset = Vector2(-1, -4)
+flip_v = true
+
+[node name="Bottom_Leaves" type="Sprite2D" parent="." unique_id=111130141]
+z_index = -1
+texture_filter = 1
+position = Vector2(0, 16)
+texture = ExtResource("3_qrkhh")
+
+[node name="Trunk" type="Sprite2D" parent="." unique_id=2068801361]
+z_index = -1
+texture_filter = 1
+position = Vector2(0, 14)
+texture = ExtResource("4_kn0uu")
+offset = Vector2(0, -4)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=500268794]
+libraries/ = SubResource("AnimationLibrary_85yun")
+speed_scale = 0.8

@@ -9,11 +9,13 @@ var col: int = -1
 var shoot_cooldown: float = 1.5
 var cooldown_timer: float = 0.0
 var base_scale: Vector2 = Vector2(4, 4)
+
 var bullet_scene = preload("res://scenes/bullet.tscn")
 
 func _ready() -> void:
 	base_scale = scale
-	add_to_group("turrets")
+	add_to_group("peashooters")
+	add_to_group("turrets") # Kept for compatibility with test.gd
 	add_to_group("buildings")
 	health = max_health
 	$AnimationPlayer.play("idle")
@@ -35,7 +37,7 @@ func _process(delta: float) -> void:
 func shoot() -> void:
 	if bullet_scene:
 		var bullet = bullet_scene.instantiate()
-		bullet.position = position + Vector2(60, -4) # Shoot from the gun tip
+		bullet.position = position + Vector2(60, -52) # Aligned with peashooter mouth at scale 4
 		bullet.row = row
 		get_parent().add_child(bullet)
 		

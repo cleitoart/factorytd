@@ -44,13 +44,13 @@ alignment = 1
 custom_minimum_size = Vector2(250, 45)
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
-text = "Turret (30W)"
+text = "Peashooter (30W)"
 
 [node name="GeneratorBtn" type="Button" parent="UI/Panel/VBoxContainer/HBoxContainer" unique_id=171311875]
 custom_minimum_size = Vector2(250, 45)
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
-text = "Generator (50W)"
+text = "Sunflower (50W)"
 
 [node name="ShovelBtn" type="Button" parent="UI/Panel/VBoxContainer/HBoxContainer" unique_id=580074707]
 custom_minimum_size = Vector2(250, 45)
@@ -65,7 +65,7 @@ alignment = 1
 [node name="EnergyLabel" type="Label" parent="UI/Panel/VBoxContainer/HBoxContainer2" unique_id=52833143]
 layout_mode = 2
 theme_override_font_sizes/font_size = 18
-text = "⚡ Power Grid: 0W / 0W"
+text = "Power Grid: 0W / 0W"
 horizontal_alignment = 1
 
 [node name="VSeparator" type="VSeparator" parent="UI/Panel/VBoxContainer/HBoxContainer2" unique_id=172259209]
@@ -74,7 +74,7 @@ layout_mode = 2
 [node name="LivesLabel" type="Label" parent="UI/Panel/VBoxContainer/HBoxContainer2" unique_id=357915005]
 layout_mode = 2
 theme_override_font_sizes/font_size = 18
-text = "❤️ Lives: 5"
+text = "Lives: 5"
 horizontal_alignment = 1
 
 [node name="GameOverScreen" type="ColorRect" parent="UI" unique_id=521167105]
@@ -111,7 +111,7 @@ horizontal_alignment = 1
 [node name="Label2" type="Label" parent="UI/GameOverScreen/VBox" unique_id=610859488]
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
-text = "The zombies ate your turrets!"
+text = "The zombies ate your brains!"
 horizontal_alignment = 1
 
 [node name="RestartBtn" type="Button" parent="UI/GameOverScreen/VBox" unique_id=1040004552]
