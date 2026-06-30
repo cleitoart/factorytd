@@ -22,8 +22,10 @@ var selected_tool: ToolType = ToolType.TURRET
 
 var player_lives: int = 5
 var max_lives: int = 5
-var total_energy_generated: int = 0
-var total_energy_consumed: int = 0
+var sun_balance: int = 50
+var sky_sun_cooldown: float = 7.5
+var sky_sun_timer: float = 4.0
+var sun_scene = preload("res://scenes/sun.tscn")
 
 # UI references
 @onready var turret_btn = $UI/Panel/VBoxContainer/HBoxContainer/TurretBtn
@@ -79,8 +81,14 @@ func setup_existing_buildings() -> void:
 				# Cell already occupied, free the duplicate
 				child.queue_free()
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
 	update_placement_preview()
+	
+	if player_lives > 0:
+		sky_sun_timer -= delta
+		if sky_sun_timer <= 0:
+			spawn_sky_sun()
+			sky_sun_timer = randf_range(6.0, 9.5)
 
 func update_placement_preview() -> void:
 	if player_lives <= 0:
@@ -142,6 +150,23 @@ func handle_grid_click(cell: Vector2i) -> void:
 			building.queue_free()
 	else:
 		if not grid.has(cell):
+			# Purchase cost check
+			var cost = 100 if selected_tool == ToolType.TURRET else 50
+			if sun_balance < cost:
+				# Red flash/shake visual feedback on Sun Counter UI
+				energy_label.pivot_offset = energy_label.size / 2
+				var tween = create_tween()
+				tween.set_parallel(true)
+				tween.tween_property(energy_label, "scale", Vector2(1.2, 1.2), 0.08)
+				tween.tween_property(energy_label, "modulate", Color(1, 0.3, 0.3), 0.08)
+				tween.chain().set_parallel(true)
+				tween.tween_property(energy_label, "scale", Vector2.ONE, 0.15).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+				tween.tween_property(energy_label, "modulate", Color.WHITE, 0.15)
+				return
+				
+			# Deduct cost
+			sun_balance -= cost
+			
 			var new_building = null
 			if selected_tool == ToolType.TURRET:
 				new_building = turret_scene.instantiate()
@@ -185,26 +210,13 @@ func remove_building(building: Node2D) -> void:
 	call_deferred("update_energy")
 
 func update_energy() -> void:
-	var active_generators = 0
-	for cell in grid:
-		var b = grid[cell]
-		if is_instance_valid(b) and b.is_in_group("generators"):
-			active_generators += 1
-			
-	total_energy_generated = active_generators * 50
-	total_energy_consumed = 0
+	energy_label.text = "☀️ Sun: " + str(sun_balance)
 	
-	# Power turrets in order of placement
-	for turret in turrets_list:
-		if is_instance_valid(turret):
-			if total_energy_consumed + 30 <= total_energy_generated:
-				turret.set_active(true)
-				total_energy_consumed += 30
-			else:
-				turret.set_active(false)
-				
-	# Update energy display
-	energy_label.text = "⚡ Power Grid: " + str(total_energy_consumed) + "W / " + str(total_energy_generated) + "W"
+	# Gray out / modulate purchase buttons if player cannot afford them
+	if is_instance_valid(turret_btn):
+		turret_btn.modulate = Color.WHITE if sun_balance >= 100 else Color(0.5, 0.5, 0.5)
+	if is_instance_valid(generator_btn):
+		generator_btn.modulate = Color.WHITE if sun_balance >= 50 else Color(0.5, 0.5, 0.5)
 
 func update_ui_buttons() -> void:
 	# Clean flat styles with bright colors for selected tools
@@ -312,3 +324,21 @@ func _on_restart_btn_pressed() -> void:
 	Engine.time_scale = 1.0
 	get_tree().paused = false
 	get_tree().reload_current_scene()
+
+func spawn_sky_sun() -> void:
+	if sun_scene:
+		var sun = sun_scene.instantiate()
+		var spawn_x = randf_range(200.0, 1720.0)
+		var target_y = randf_range(GRID_START_Y, GRID_START_Y + 4 * CELL_HEIGHT)
+		add_child(sun)
+		sun.start_falling(Vector2(spawn_x, -50.0), target_y)
+
+func add_sun(amount: int) -> void:
+	sun_balance += amount
+	update_energy()
+	
+	# Scale bounce visual juice feedback on Sun Label
+	energy_label.pivot_offset = energy_label.size / 2
+	var tween = create_tween()
+	tween.tween_property(energy_label, "scale", Vector2(1.25, 1.25), 0.08)
+	tween.tween_property(energy_label, "scale", Vector2.ONE, 0.15).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)

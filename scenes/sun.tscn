@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://df4vnbm5q8w2x"]
+
+[ext_resource type="Script" path="res://scenes/sun.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://cjyyab1s35s8l" path="res://assets/sprites/Sun.png" id="2_texture"]
+
+[node name="Sun" type="Node2D"]
+scale = Vector2(4, 4)
+script = ExtResource("1_script")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_texture")

@@ -46,16 +46,11 @@ func shoot() -> void:
 		tween.tween_property(self, "scale", base_scale * Vector2(0.85, 1.15), 0.07)
 		tween.tween_property(self, "scale", base_scale, 0.07)
 
-func set_active(value: bool) -> void:
-	is_active = value
-	if is_active:
-		if not $AnimationPlayer.is_playing():
-			$AnimationPlayer.play("idle")
-		modulate = Color.WHITE
-	else:
-		if $AnimationPlayer.is_playing():
-			$AnimationPlayer.stop()
-		modulate = Color(0.35, 0.35, 0.5) # Dimmed / blue-gray tone to represent offline
+func set_active(_value: bool) -> void:
+	is_active = true
+	if not $AnimationPlayer.is_playing():
+		$AnimationPlayer.play("idle")
+	modulate = Color.WHITE
 
 func take_damage(amount: float) -> void:
 	health -= amount

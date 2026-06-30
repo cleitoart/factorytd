@@ -1,12 +1,13 @@
 [gd_scene format=3 uid="uid://cx6vnbm5q8w2x"]
 
-[ext_resource type="Script" path="res://scenes/bullet.gd" id="1_script"]
+[ext_resource type="Script" uid="uid://soplxvg4wppx" path="res://scenes/bullet.gd" id="1_script"]
 [ext_resource type="Texture2D" uid="uid://py4xahtgvmst" path="res://assets/sprites/Bullet.png" id="2_texture"]
 
-[node name="Bullet" type="Node2D"]
+[node name="Bullet" type="Node2D" unique_id=1369997780]
 scale = Vector2(4, 4)
 script = ExtResource("1_script")
+speed = 800.0
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=253853476]
 texture_filter = 1
 texture = ExtResource("2_texture")

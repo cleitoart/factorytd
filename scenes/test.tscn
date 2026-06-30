@@ -44,13 +44,13 @@ alignment = 1
 custom_minimum_size = Vector2(250, 45)
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
-text = "Peashooter (30W)"
+text = "Peashooter (100)"
 
 [node name="GeneratorBtn" type="Button" parent="UI/Panel/VBoxContainer/HBoxContainer" unique_id=171311875]
 custom_minimum_size = Vector2(250, 45)
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
-text = "Sunflower (50W)"
+text = "Sunflower (50)"
 
 [node name="ShovelBtn" type="Button" parent="UI/Panel/VBoxContainer/HBoxContainer" unique_id=580074707]
 custom_minimum_size = Vector2(250, 45)
@@ -65,7 +65,7 @@ alignment = 1
 [node name="EnergyLabel" type="Label" parent="UI/Panel/VBoxContainer/HBoxContainer2" unique_id=52833143]
 layout_mode = 2
 theme_override_font_sizes/font_size = 18
-text = "Power Grid: 0W / 0W"
+text = "Sun: 50"
 horizontal_alignment = 1
 
 [node name="VSeparator" type="VSeparator" parent="UI/Panel/VBoxContainer/HBoxContainer2" unique_id=172259209]
